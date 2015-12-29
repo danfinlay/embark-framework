@@ -41,7 +41,6 @@ describe('embark.chain_manager', function() {
 
         chainManager.addContract("Foo", "123456", [], "0x123");
 
-        console.log(chainManager.chainManagerConfig);
         var chain = chainManager.chainManagerConfig['0xcd9c11da1e46f86ce40a38b6ef84cfdfa6ea92598a27538f0e87da6d7a5c73d5']
         var contract = chain.contracts["d5d91a8825c5c253dff531ddda2354c4014f5699b7bcbea70207cfdcb37b6c8b"]
 
