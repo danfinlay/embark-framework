@@ -93,7 +93,7 @@ describe('embark.deploy', function() {
         setDeployConfig({
           files: files,
           blockchain: 'test/support/blockchain.yml',
-          contracts: 'test/support/arguments2.yml'
+          contracts: 'test/support/arguments.yml'
         })
         .then(function(deploy) {
           return deploy.deploy_contracts("development");
@@ -158,7 +158,6 @@ describe('embark.deploy', function() {
         }).then(function(deploy) {
 
           var all_contracts = ['DataSource', 'MyDataSource', 'Manager'];
-          console.dir(all_contracts);
           for(var i=0; i < all_contracts.length; i++) {
             var className = all_contracts[i];
 
@@ -174,7 +173,7 @@ describe('embark.deploy', function() {
           contracts: 'test/support/arguments.yml'
         })
         .then(function(deploy) {
-          return deploy.deploy_contracts("development");
+          return deploy.deploy_contracts('development');
         })
         .then(function(deploy) {
 
