@@ -76,7 +76,6 @@ describe('embark.chain_manager', function() {
     it('should save changes in the chain', function() {
 
       (new ChainManager()).loadConfigFile(chainFile)
-
       .then(function(chainManager) {
         return chainManager.init('development', chainManager.config, web3)
       }).then(function(chainManager) {
@@ -86,9 +85,8 @@ describe('embark.chain_manager', function() {
         var chainFile = './test/support/chain_manager.json';
         var content = fs.readFileSync(chainFile).toString();
         var json = JSON.parse(content);
-        console.dir(json);
-        assert.ok("0xcd9c11da1e46f86ce40a38b6ef84cfdfa6ea92598a27538f0e87da6d7a5c73d5" in json);
-        assert.equal(content["0xcd9c11da1e46f86ce40a38b6ef84cfdfa6ea92598a27538f0e87da6d7a5c73d5"], {"contracts":{"d5d91a8825c5c253dff531ddda2354c4014f5699b7bcbea70207cfdcb37b6c8b":{"name":"Foo","address":"0x123"}}});
+        assert.ok("0x70fe139444c1b6000184d663715ab48d51f04fe5bf2db3260d982ca38c30806f8669c995141cdebe8e4411afe6b1a91024b0b6fc7561ca16d7c187507f75fcae" in json);
+        assert.equal(json["0x70fe139444c1b6000184d663715ab48d51f04fe5bf2db3260d982ca38c30806f8669c995141cdebe8e4411afe6b1a91024b0b6fc7561ca16d7c187507f75fcae"], {"contracts":{"d5d91a8825c5c253dff531ddda2354c4014f5699b7bcbea70207cfdcb37b6c8b":{"name":"Foo","address":"0x123"}}});
       });
     });
   });
