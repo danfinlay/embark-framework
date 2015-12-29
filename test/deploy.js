@@ -203,7 +203,7 @@ describe('embark.deploy', function() {
         setDeployConfig({
           files: files,
           blockchain: 'test/support/blockchain.yml',
-          contracts: 'test/support/addresses.yml'
+          contracts: 'test/support/address.yml'
         })
         .then(function(deploy) {
 
