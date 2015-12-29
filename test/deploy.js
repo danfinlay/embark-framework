@@ -158,6 +158,7 @@ describe('embark.deploy', function() {
         }).then(function(deploy) {
 
           var all_contracts = ['DataSource', 'MyDataSource', 'Manager'];
+          console.dir(all_contracts);
           for(var i=0; i < all_contracts.length; i++) {
             var className = all_contracts[i];
 
