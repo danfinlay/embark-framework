@@ -5,8 +5,8 @@ install:
 node_js:
   - "0.10"
   - "0.12"
-  - "3.x.x"
-  - "4.x.x"
-  - "5.x.x"
+  - "3"
+  - "4"
+  - "5"
 script:
   - mocha test
