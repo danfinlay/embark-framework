@@ -42,7 +42,9 @@ describe('embark.deploy', function() {
           contracts: 'test/support/arguments.yml'
         })
         .then(function(deploy) {
-          deploy.deploy_contracts("development");
+          return deploy.deploy_contracts("development");
+        })
+        .then(function(deploy) {
 
           var all_contracts = ['Wallet', 'SimpleStorage', 'AnotherStorage', 'Wallets'];
           for(var i=0; i < all_contracts.length; i++) {
@@ -206,13 +208,13 @@ describe('embark.deploy', function() {
           contracts: 'test/support/address.yml'
         })
         .then(function(deploy) {
-
-          deploy.deploy_contracts("development");
+          return deploy.deploy_contracts("development");
+        })
+        .then(function(deploy) {
           var expected_deploys = ['SimpleStorage', 'BarStorage', 'FooStorage'];
 
           for(var i=0; i < expected_deploys.length; i++) {
             var className = expected_deploys[i];
-
             assert.equal(deploy.deployedContracts.hasOwnProperty(className), true);
           }
 
