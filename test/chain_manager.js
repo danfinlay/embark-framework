@@ -33,10 +33,10 @@ describe('embark.chain_manager', function() {
   });
 
   describe('#addContract', function() {
-
     it('should register a contract in the chain', function() {
 
-      (new ChainManager()).loadConfigFile(chainFile)
+      var chainManager = new ChainManager();
+      chainManager.loadConfigFile(chainFile)
       .then(function(chainManager) {
 
         chainManager.addContract("Foo", "123456", [], "0x123");
@@ -48,7 +48,6 @@ describe('embark.chain_manager', function() {
         assert.equal(contract.address, "0x123");
       });
     });
-
   });
 
   describe('#getContract', function() {
