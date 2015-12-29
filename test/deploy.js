@@ -14,7 +14,7 @@ setDeployConfig = function(config) {
   var blockchainConfig = _blockchainConfig.config("development");
   var compiler = new Compiler(_blockchainConfig);
   var contractsConfig = new Config.Contracts(blockchainConfig, compiler);
-  return (new ChainManager()).loadConfigFile('./test/support/chain_manager.json')
+  return (new ChainManager()).loadConfig({}).init('development', {}, web3)
   .then(function(chainManager) {
     contractsConfig.loadConfigFile(config.contracts);
     contractsConfig.init(config.files, 'development');
@@ -75,7 +75,7 @@ describe('embark.deploy', function() {
           }
 
           var result = deploy.generate_abi_file();
-          assert.strictEqual(result, "web3.setProvider(new web3.providers.HttpProvider('http://localhost:8101'));web3.eth.defaultAccount = web3.eth.accounts[0];SimpleStorageAbi = 123;SimpleStorageContract = web3.eth.contract(SimpleStorageAbi);SimpleStorage = SimpleStorageContract.at('0x123');AnotherStorageAbi = 234;AnotherStorageContract = web3.eth.contract(AnotherStorageAbi);AnotherStorage = AnotherStorageContract.at('0x234');");
+          assert.equal(result, "web3.setProvider(new web3.providers.HttpProvider('http://localhost:8101'));web3.eth.defaultAccount = web3.eth.accounts[0];SimpleStorageAbi = 123;SimpleStorageContract = web3.eth.contract(SimpleStorageAbi);SimpleStorage = SimpleStorageContract.at('0x123');AnotherStorageAbi = 234;AnotherStorageContract = web3.eth.contract(AnotherStorageAbi);AnotherStorage = AnotherStorageContract.at('0x234');");
         });
       });
     });
@@ -96,7 +96,8 @@ describe('embark.deploy', function() {
           contracts: 'test/support/arguments2.yml'
         })
         .then(function(deploy) {
-          deploy.deploy_contracts("development");
+          return deploy.deploy_contracts("development");
+        }).then(function(deploy) {
 
           var all_contracts = ['token', 'Crowdsale'];
           for(var i=0; i < all_contracts.length; i++) {
@@ -122,9 +123,9 @@ describe('embark.deploy', function() {
           files: files,
           blockchain: 'test/support/blockchain.yml',
           contracts: 'test/support/instances.yml'
-        })
-        .then(function(deploy) {
-          deploy.deploy_contracts("development");
+        }).then(function(deploy) {
+          return deploy.deploy_contracts("development");
+        }).then(function(deploy) {
 
           var all_contracts = ['BarStorage', 'FooStorage'];
           for(var i=0; i < all_contracts.length; i++) {
@@ -153,7 +154,8 @@ describe('embark.deploy', function() {
           contracts: 'test/support/arguments3.yml'
         })
         .then(function(deploy) {
-          deploy.deploy_contracts("development");
+          return deploy.deploy_contracts("development");
+        }).then(function(deploy) {
 
           var all_contracts = ['DataSource', 'MyDataSource', 'Manager'];
           for(var i=0; i < all_contracts.length; i++) {
@@ -171,7 +173,9 @@ describe('embark.deploy', function() {
           contracts: 'test/support/arguments.yml'
         })
         .then(function(deploy) {
-          deploy.deploy_contracts("development");
+          return deploy.deploy_contracts("development");
+        })
+        .then(function(deploy) {
 
           web3.setProvider(new web3.providers.HttpProvider('http://localhost:8101'));
           web3.eth.defaultAccount = web3.eth.accounts[0];
