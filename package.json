@@ -3,7 +3,7 @@
   "version": "1.0.2",
   "description": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test"
   },
   "bin": {
     "embark": "./bin/embark"
