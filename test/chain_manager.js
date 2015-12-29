@@ -10,7 +10,7 @@ web3.setProvider(new web3.providers.HttpProvider("http://localhost:8101"));
 
 describe('embark.chain_manager', function() {
   var chainFile = './test/support/chain_manager.json';
-  fs.writeFileSync(chainFile, '{}');
+  fs.writeFileSync(chainFile, '{"gas_limit": 500000}');
 
   var blockchainConfig = (new Config.Blockchain()).loadConfigFile('test/support/blockchain.yml').config('development');
 
