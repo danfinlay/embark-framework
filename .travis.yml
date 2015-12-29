@@ -8,5 +8,7 @@ node_js:
   - "3"
   - "4"
   - "5"
+env:
+  - CXX=g++-4.8
 script:
   - npm test
